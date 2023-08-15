@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-color: #f0f0f0;
+            }
+    
+            .container {
+                text-align: center;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            }
+    
+            .password {
+                margin-top: 20px;
+            }
+    
+            #password {
+                width: 100%;
+                padding: 10px;
+                font-size: 18px;
+                border: none;
+                background-color: #f5f5f5;
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+    
+            #generate {
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+    </style>
+    <title>creador de contraseña</title>
+</head>
+<body>
+    <div class="container">
+        <h1>generador de contraseñas</h1>
+        <div class="password">
+            <input type="text" id="password" readonly>
+            <button id="generate">generador de contraseñas</button>
+            <button id="copy">copiar contraseña</button>
+        </div>
+    </div>
+    <script>
+        document.getElementById('generate').addEventListener('click', function () {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+            const passwordLength = 12;
+            let password = '';
+
+            for (let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset.charAt(randomIndex);
+            }
+
+            document.getElementById('password').value = password;
+        });
+
+        document.getElementById('copy').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            passwordField.select();
+            document.execCommand('copy');
+        });
+    </script>
+</body>
+</html>
